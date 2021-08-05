@@ -18,6 +18,6 @@ export async function signIn(req:Request,res:Response){
   const user = req.body as User;
   if(userSchema.validate(user).error) return res.sendStatus(400)
   const token = await userService.signIn(user);
-  if(!token) res.sendStatus(401)
+  if(!token) return res.sendStatus(401)
   res.send({token})
 }
