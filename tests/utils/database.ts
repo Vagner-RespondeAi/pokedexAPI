@@ -1,7 +1,13 @@
-import { getRepository } from "typeorm";
+import { getConnection, getManager } from "typeorm";
+import { init } from "../../src/app";
 
-import User from "../../src/entities/User";
+export async function startConnection(){
+    await init();
+}
+export async function endConnection(){
+    await getConnection().close();
+}
 
-export async function clearDatabase () {
-  await getRepository(User).delete({});
+export async function clearDatabase(){
+    await getManager().query('TRUNCATE users RESTART IDENTITY CASCADE');
 }

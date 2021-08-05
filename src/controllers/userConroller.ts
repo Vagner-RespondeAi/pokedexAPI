@@ -6,7 +6,6 @@ import * as userService from "../services/userService";
 
 export async function signUp(req:Request,res:Response){
   const newUser = req.body as NewUser
-  console.log(registerUserSchema.validate(newUser))
   if(registerUserSchema.validate(newUser).error) return res.sendStatus(400)
   const result = await userService.signUp(newUser)
   if(!result) return res.sendStatus(409)
