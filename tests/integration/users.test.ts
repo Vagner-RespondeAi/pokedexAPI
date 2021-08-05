@@ -8,7 +8,7 @@ beforeAll(startConnection);
 afterAll(endConnection);
 beforeEach(clearDatabase)
 
-describe("GET /users", () => {
+describe("POST /sign-up", () => {
   it("should answer with status 400 for invalid email", async () => {
   const newUser = createNewUser();
   newUser.email = "abcde";
@@ -39,3 +39,37 @@ describe("GET /users", () => {
     expect(result.status).toBe(201)
   });
 });
+
+describe("POST /sign-in", () => {
+  it("should answer with status 400 for invalid email", async () => {
+  const user = await registerUser();
+  user.email = "abcde";
+  const result = await supertest(app).post('/sign-in').send(user);
+  expect(result.status).toBe(400)
+  });
+  it("should answer with status 401 for nonexistent email", async () => {
+    const user = await registerUser();
+    user.email += '.br'
+    const result = await supertest(app).post('/sign-in').send(user);
+    expect(result.status).toBe(401)
+  });
+  it("should answer with status 401 for invalid password", async () => {
+    const user = await registerUser();
+    user.password += '123'
+    const result = await supertest(app).post('/sign-in').send(user);
+    expect(result.status).toBe(401)
+  });
+  it("should answer with status 200 for valid params", async () => {
+    const user = await registerUser();
+    const result = await supertest(app).post('/sign-in').send(user);
+    expect(result.status).toBe(200)
+  });
+  it("should answer with object containing a token for valid params", async () => {
+    const user = await registerUser();
+    const result = await supertest(app).post('/sign-in').send(user);
+    expect(result.body).toEqual(expect.objectContaining({
+      token:expect.any(String)
+    }))
+  });
+});
+
