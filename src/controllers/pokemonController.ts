@@ -28,3 +28,18 @@ export async function registerUserPokemons(req:Request,res:Response,next:NextFun
         next(e)
     }
 }
+
+export async function removeUserPokemons(req:Request,res:Response,next:NextFunction){
+    try{
+        console.log('a')
+        const id:number =  Number(req.params.id);
+        const user = res.locals.user as User;
+        const idSchema = Joi.number().integer().positive();
+        if(idSchema.validate(id).error) return res.sendStatus(400);
+        await pokemonService.removeUserPokemons(id,user)
+        res.sendStatus(200)
+    }
+    catch(e){
+        next(e)
+    }
+}

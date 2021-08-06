@@ -19,6 +19,7 @@ app.post("/sign-in", userController.signIn);
 
 app.get("/pokemons",authenticate,pokemonController.getAll)
 app.post("/my-pokemons/:id/add",authenticate,pokemonController.registerUserPokemons)
+app.post("/my-pokemons/:id/remove",authenticate,pokemonController.removeUserPokemons)
 
 
 app.use((err:any,req:Request,res:Response,next:NextFunction)=>{

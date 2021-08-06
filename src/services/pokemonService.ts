@@ -41,3 +41,11 @@ export async function registerUserPokemons(id:number,user:User){
     pokemon.users = [...pokemon.users,user];
     await repository.save(pokemon)
 }
+
+export async function removeUserPokemons(id:number,user:User){
+    const repository = getRepository(Pokemon)
+    const pokemon = await repository.findOne({where:{id},relations:['users']})
+    pokemon.id = id;
+    pokemon.users = pokemon.users.filter(u=>u.id!==user.id)
+    await repository.save(pokemon)
+}
