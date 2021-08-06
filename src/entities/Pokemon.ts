@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
 import User from "./User";
 
 @Entity("pokemons")
@@ -16,13 +16,13 @@ export default class Pokemon {
     image:string
 
     @Column()
-    weight:string
+    weight:number
 
     @Column()
-    height:string
+    height:number
 
     @Column()
-    baseExp:string
+    baseExp:number
 
     @Column()
     description:string
