@@ -10,6 +10,7 @@ export default async function authenticate(req:Request,res:Response,next:NextFun
     try {
         const data:any = jwt.verify(token, chaveSecreta);
         const session = await getRepository(Session).findOne({where:{id:data.id},relations:['user']})
+        if(!session) return res.sendStatus(401)
         res.locals.user = session.user;
         next();
     } catch {

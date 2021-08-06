@@ -10,4 +10,5 @@ export async function endConnection(){
 
 export async function clearDatabase(){
     await getManager().query('TRUNCATE users RESTART IDENTITY CASCADE');
+    await getManager().query('TRUNCATE pokemons RESTART IDENTITY CASCADE');
 }

@@ -16,7 +16,7 @@ interface PokemonResponse{
 
 export async function getAll(user:User):Promise<PokemonResponse[]>{
     const repository = getRepository(Pokemon)
-    const pokemons = await repository.createQueryBuilder('pokemon').leftJoinAndSelect('pokemon.users','user','user.id = :userId',{userId:user.id}).getMany()
+    const pokemons = await repository.createQueryBuilder('pokemon').leftJoinAndSelect('pokemon.users','user','user.id = :userId',{userId:user.id}).orderBy('pokemon.id','ASC').getMany()
     const pokemonResponse:PokemonResponse[] = pokemons.map((p:Pokemon)=>{
         return{
             id:p.id,
