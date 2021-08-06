@@ -27,3 +27,9 @@ export async function assignPokemon(id:number,userId:number){
     pokemon.users = [user];
     await getRepository(Pokemon).save(pokemon)
 }
+
+export async function getPokemonById(id:number){
+    const repository = getRepository(Pokemon);
+    const pokemon = await repository.findOne({where:{id},relations:['users']});
+    return pokemon;
+}
