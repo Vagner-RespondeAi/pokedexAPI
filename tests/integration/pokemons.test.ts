@@ -60,7 +60,7 @@ describe('POST /my-pokemons/:id/add',()=>{
         const result = await supertest(app).post('/my-pokemons/1/add').set('authorization',token);
         expect(result.status).toEqual(200);
     })
-    it('should add the user in pokemon.users array',async ()=>{
+    it('should add the user in pokemon.users array for valid params',async ()=>{
         const user = await registerUser();
         const completeUser = await findByName(user.email);
         const token = await logUser(completeUser.id);
@@ -73,7 +73,35 @@ describe('POST /my-pokemons/:id/add',()=>{
 
 describe('POST /my-pokemons/:id/remove',()=>{
     it('should answer with status 401 for invalid token',async ()=>{
-        const result = await supertest(app).get('/pokemons').set('authorization', 'Bearer shjahsja')   
+        const result = await supertest(app).post('/my-pokemons/1/remove').set('authorization', 'Bearer shjahsja')   
         expect(result.status).toEqual(401)
-       })
+    })
+    it('should answer with status 400 for invalid id',async ()=>{
+        const user = await registerUser();
+        const completeUser = await findByName(user.email);
+        const token = await logUser(completeUser.id);
+        const result = await supertest(app).post('/my-pokemons/-1/remove').set('authorization',token);
+        expect(result.status).toEqual(400);
+    })
+    it('should answer with status 200 for valid params',async ()=>{
+        const user = await registerUser();
+        const completeUser = await findByName(user.email);
+        const token = await logUser(completeUser.id);
+        await populatePokemons(3)
+        await assignPokemon(1,completeUser.id);
+        const result = await supertest(app).post('/my-pokemons/1/remove').set('authorization',token);
+        expect(result.status).toEqual(200);
+    })
+    it('should remove the user in pokemon.users array for valid params',async ()=>{
+        const user = await registerUser();
+        const completeUser = await findByName(user.email);
+        const token = await logUser(completeUser.id);
+        await populatePokemons(3)
+        await assignPokemon(1,completeUser.id);
+        const pokemonBefore = await getPokemonById(1)
+        expect(pokemonBefore.users[0].id).toEqual(completeUser.id);
+        await supertest(app).post('/my-pokemons/1/remove').set('authorization',token);
+        const pokemon = await getPokemonById(1)
+        expect(pokemon.users.length).toEqual(0);
+    })
 })
