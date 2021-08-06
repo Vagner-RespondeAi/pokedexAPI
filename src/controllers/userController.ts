@@ -11,7 +11,7 @@ export async function signUp(req:Request,res:Response){
   if(registerUserSchema.validate(newUser).error) return res.sendStatus(400)
   const result = await userService.signUp(newUser)
   if(!result) return res.sendStatus(409)
-  res.sendStatus(201)
+  return res.sendStatus(201)
 }
 
 export async function signIn(req:Request,res:Response){
