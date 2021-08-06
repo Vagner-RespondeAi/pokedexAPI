@@ -34,18 +34,9 @@ export async function getAll(user:User):Promise<PokemonResponse[]>{
     return pokemonResponse
 }
 
-export async function registerUserPokemons(id:number,user:User){
+export async function changeUserPokemons(id:number,user:User,type:string){
     const repository = getRepository(Pokemon)
     const pokemon = await repository.findOne({where:{id},relations:['users']})
-    pokemon.id = id;
-    pokemon.users = [...pokemon.users,user];
-    await repository.save(pokemon)
-}
-
-export async function removeUserPokemons(id:number,user:User){
-    const repository = getRepository(Pokemon)
-    const pokemon = await repository.findOne({where:{id},relations:['users']})
-    pokemon.id = id;
-    pokemon.users = pokemon.users.filter(u=>u.id!==user.id)
+    pokemon.users = type==='add' ?  [...pokemon.users,user]:pokemon.users.filter(u=>u.id!==user.id);
     await repository.save(pokemon)
 }
