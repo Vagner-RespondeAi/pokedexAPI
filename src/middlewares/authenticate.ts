@@ -5,9 +5,9 @@ import { getRepository } from "typeorm";
 
 export default async function authenticate(req:Request,res:Response,next:NextFunction){
     const authorization = req.headers["authorization"];
-    const token = authorization.split("Bearer ")[1];
     const chaveSecreta = process.env.JWT_SECRET;
     try {
+        const token = authorization.split("Bearer ")[1];
         const data:any = jwt.verify(token, chaveSecreta);
         const session = await getRepository(Session).findOne({where:{id:data.id},relations:['user']})
         if(!session) return res.sendStatus(401)
