@@ -32,17 +32,18 @@ The following tools and frameworks were used in the construction of the project:
 ## How to run
 
 1. Clone this repository
-2. create a postgres Database named mywallet
-3. Install dependencies
-```bash
+2. create a postgres Database named pokedex
+3. create a .env like .env.example with your database values
+4. Install dependencies
+```
 npm i
 ```
-4. create and run migrations for your database:
+5. create and run migrations for your database:
 ```
 npm run build
 ```
-5.start server with:
+6.start server with:
 ```
 npm run dev
 ```
-6.Finally access http://localhost:4000/routename changing 'routename' for the route you wanna call on postman or in front-end: 
+7.Finally access http://localhost:4000/routename changing 'routename' for the route you wanna call on postman or in front-end: 
