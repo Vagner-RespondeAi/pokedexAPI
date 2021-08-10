@@ -3,7 +3,7 @@
 An easy to use API to get data of pokemons from pokemon game franchise. get info about a pokemon, save it or remove it from your pokemons.
 
 
-Try it out now at https://my-wallet-front-50pa0so9n-lucasfranchini.vercel.app
+Try it out now at https://pokedex-rosy-mu.vercel.app/login
 
 ## About
 
@@ -12,12 +12,11 @@ Below are the implemented features:
 
 - Sign Up
 - Login
-- List all financial events for a user
-- Add expense
-- Add revenue
-- responsive layout
+- List all pokemons in database
+- Add new pokemon in your pokemons
+- remove a pokemon from your pokemons
 
-By using this app any user can learn how they've been using their money and always keep track of your balance.
+By using this app any user manage your list of pokemons and get infos about them.
 
 ## Technologies
 The following tools and frameworks were used in the construction of the project:<br>
