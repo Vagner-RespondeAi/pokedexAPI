@@ -21,27 +21,28 @@ By using this app any user manage your list of pokemons and get infos about them
 ## Technologies
 The following tools and frameworks were used in the construction of the project:<br>
 <p>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&color=b8679e&logo=styled-components&logoColor=%3a3a3a'>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&color=informational'>
-  <img style='margin: 5px;' src="https://img.shields.io/badge/react-app%20-%2320232a.svg?&style=for-the-badge&color=60ddf9&logo=react&logoColor=%2361DAFB"/>
-  <img style='margin: 5px;' src="https://img.shields.io/badge/react_route%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=whiteE'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white'>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
 </p>
 
 ## How to run
 
 1. Clone this repository
-2. Clone the back-end repository at https://github.com/lucasfranchini/MyWalletBack
-3. Follow instructions to run back-end at https://github.com/lucasfranchini/MyWalletBack
-4. Install dependencies
+2. create a postgres Database named mywallet
+3. Install dependencies
 ```bash
 npm i
 ```
-5. Run the front-end with
-```bash
-npm start
+4. create and run migrations for your database:
 ```
-6. You can optionally build the project running
-```bash
 npm run build
 ```
-7. Finally access http://localhost:3000 on your browser 
+5.start server with:
+```
+npm run dev
+```
+6.Finally access http://localhost:4000/routename changing 'routename' for the route you wanna call on postman or in front-end: 
