@@ -1,34 +1,39 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 import User from "./User";
 
 @Entity("pokemons")
 export default class Pokemon {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name:string;
-    
-    @Column()
-    number:number;
+  @Column()
+  name: string;
 
-    @Column()
-    image:string
+  @Column()
+  number: number;
 
-    @Column()
-    weight:number
+  @Column()
+  image: string;
 
-    @Column()
-    height:number
+  @Column()
+  weight: number;
 
-    @Column()
-    baseExp:number
+  @Column()
+  height: number;
 
-    @Column()
-    description:string
+  @Column()
+  baseExp: number;
 
-    @ManyToMany(() => User,user=>user.pokemons)
-    @JoinTable()
-    users: User[];
+  @Column()
+  description: string;
 
+  @ManyToMany(() => User, (user) => user.pokemons)
+  @JoinTable()
+  users: User[];
 }

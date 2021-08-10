@@ -3,12 +3,12 @@ import User from "./User";
 
 @Entity("sessions")
 export default class Session {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    userId: number;
+  @Column()
+  userId: number;
 
-    @ManyToOne(() => User)
-    user:User;
+  @ManyToOne(() => User)
+  user: User;
 }

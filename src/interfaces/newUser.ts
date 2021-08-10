@@ -1,6 +1,5 @@
-export default interface NewUser{
-    email:string;
-    password:string;
-    confirmPassword:string;
+export default interface NewUser {
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
-  

@@ -12,6 +12,6 @@ export default class User {
   @Column()
   password: string;
 
-  @ManyToMany(() => Pokemon,pokemon=>pokemon.users)
-  pokemons:Pokemon[];
+  @ManyToMany(() => Pokemon, (pokemon) => pokemon.users)
+  pokemons: Pokemon[];
 }
